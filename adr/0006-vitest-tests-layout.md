@@ -16,7 +16,7 @@ We need fast unit tests for `lib/` helpers and server actions. Jest's startup co
   - `include` covers `tests/**/*.test.ts` and `tests/**/*.test.tsx`
 - Tests live in **`tests/`** at the repo root, organized to mirror `src/` (e.g. `tests/lib/`, `tests/actions/`) **or** by domain when a feature spans multiple folders (e.g. `tests/geo/`, `tests/nominatim/`). Pick whichever is clearer for the feature.
 - Naming: `*.test.ts` / `*.test.tsx`.
-- End-to-end UI testing is **not** Vitest's job — see CLAUDE.md for the browser-agent workflow.
+- End-to-end UI testing is **not** Vitest's job — see CLAUDE.md for the `agent-browser` workflow.
 
 ## Consequences
 

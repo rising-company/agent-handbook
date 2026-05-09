@@ -33,11 +33,19 @@ Rules:
 
 ## UI testing
 
-### Use the browser agent skill for end-to-end UI verification
+### Use the `agent-browser` skill for end-to-end UI verification
 
-For any change that affects the UI (components, routes, styles, user-facing behavior), use the browser agent skill to drive the app end-to-end before reporting the task complete.
+For any change that affects the UI (components, routes, styles, user-facing behavior), drive the app end-to-end with the [`agent-browser`](https://agent-browser.dev) skill before reporting the task complete.
+
+How to use it:
+
+- Load the workflow content first: `agent-browser skills get core` (or `--full` for the complete command reference). The installed CLI serves the up-to-date guide; do not run commands from memory.
+- For exploratory testing / QA / bug-hunt sessions, also load: `agent-browser skills get dogfood`.
+- The CLI drives Chrome/Chromium via CDP and exposes accessibility-tree snapshots with `@eN` element refs — use those refs rather than guessing CSS selectors.
+
+What to verify:
 
 - Exercise the golden path *and* the edge cases of the change.
 - Watch for regressions in adjacent features, not just the one you touched.
 - Type checks and unit tests verify code correctness, not feature correctness — they are not a substitute for actually using the feature.
-- If the browser agent is unavailable or the change can't be exercised in a browser (e.g. backend-only), say so explicitly rather than claiming UI verification.
+- If `agent-browser` is unavailable or the change can't be exercised in a browser (e.g. backend-only), say so explicitly rather than claiming UI verification.
