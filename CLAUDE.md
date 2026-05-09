@@ -15,6 +15,14 @@ This project follows the Rising Company shared architecture. Each decision below
 
 See [`adr/README.md`](adr/README.md) for the full index. Deviating from an ADR is allowed but should add a new ADR that supersedes the old one.
 
+## Checklists
+
+Run through the relevant checklist before declaring a task complete. ADRs explain decisions; checklists tell you what to verify.
+
+- [New project checklist](checklists/new-project-checklist.md) — bootstrapping or auditing a Rising Company app
+
+See [`checklists/README.md`](checklists/README.md) for the full index.
+
 ## Development workflow
 
 ### Red-green development (always)
