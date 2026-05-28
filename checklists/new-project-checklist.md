@@ -34,7 +34,7 @@ The reference projects are [`os`](https://github.com/rising-company/os), [`huddl
 - [ ] **`src/lib/supabase/middleware.ts`** exports a reusable `updateSession()` helper — middleware.ts stays thin (this is the `venue-map` pattern; copy it).
 - [ ] **`matcher` config** excludes `_next/static`, `_next/image`, favicon, public assets.
 - [ ] **Passwordless sign-in is the default.** Use Supabase magic-link / OTP; no password field on the sign-in form unless there's a specific reason to opt out. Removes the password-reset flow and the leaked-password risk class.
-- [ ] **Supabase auth email templates customized to Rising brand.** Override `confirmation`, `magic_link`, `recovery`, `invite`, and `email_change` templates in `supabase/templates/` (and reference them from `supabase/config.toml`). HUD aesthetic, mint accents, monospace headers, Rising logo, brand-correct footer — not the Supabase defaults.
+- [ ] **Supabase auth email templates customized to Rising brand.** Drop branded HTML in `supabase/templates/` and wire each from `supabase/config.toml` via `[auth.email.template.<name>]` blocks setting `subject` + `content_path`. Cover `confirmation`, `magic_link`, `recovery`, `invite`, and `email_change`. HUD aesthetic, mint accents, monospace headers, Rising logo, brand-correct footer — not the Supabase defaults. **Run `supabase config push` after editing** — `config.toml` only drives the *local* stack; the hosted project keeps serving Supabase defaults until you push (CLI ≥ 2.x; the diff lists each template that will change).
 
 ## Supabase
 
