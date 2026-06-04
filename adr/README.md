@@ -12,6 +12,8 @@ Each ADR captures one decision that is shared across Rising Company projects (`o
 - [ADR-0006 — Vitest with `node` environment, tests/ folder](0006-vitest-tests-layout.md)
 - [ADR-0007 — Migration immutability and local-first DB workflow](0007-migration-immutability.md)
 - [ADR-0008 — Branding via `src/lib/config.ts`](0008-branding-config.md)
+- [ADR-0009 — Security assurance baseline](0009-security-assurance-baseline.md)
+- [ADR-0010 — Data retention and disposal policy](0010-data-retention-disposal.md)
 
 ## Format
 
