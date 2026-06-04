@@ -14,6 +14,7 @@ Each ADR captures one decision that is shared across Rising Company projects (`o
 - [ADR-0008 — Branding via `src/lib/config.ts`](0008-branding-config.md)
 - [ADR-0009 — Security assurance baseline](0009-security-assurance-baseline.md)
 - [ADR-0010 — Data retention and disposal policy](0010-data-retention-disposal.md)
+- [ADR-0011 — Accessibility assurance](0011-accessibility-assurance.md)
 
 ## Format
 

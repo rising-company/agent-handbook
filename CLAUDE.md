@@ -14,6 +14,7 @@ This project follows the Rising Company shared architecture. Each decision below
 - [ADR-0008 — Branding via `src/lib/config.ts`](adr/0008-branding-config.md)
 - [ADR-0009 — Security assurance baseline](adr/0009-security-assurance-baseline.md)
 - [ADR-0010 — Data retention and disposal policy](adr/0010-data-retention-disposal.md)
+- [ADR-0011 — Accessibility assurance](adr/0011-accessibility-assurance.md)
 
 See [`adr/README.md`](adr/README.md) for the full index. Deviating from an ADR is allowed but should add a new ADR that supersedes the old one.
 
