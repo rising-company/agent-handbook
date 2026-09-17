@@ -1,6 +1,6 @@
 # ADR-0004 — Middleware-based auth gate
 
-**Status:** Accepted
+**Status:** Superseded by [ADR-0012](0012-better-auth-central-identity.md)
 
 ## Context
 
