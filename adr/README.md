@@ -16,6 +16,7 @@ Each ADR captures one decision that is shared across Rising Company projects (`o
 - [ADR-0010 — Data retention and disposal policy](0010-data-retention-disposal.md)
 - [ADR-0011 — Accessibility assurance](0011-accessibility-assurance.md)
 - [ADR-0012 — Better Auth as central identity](0012-better-auth-central-identity.md) — supersedes ADR-0004
+- [ADR-0013 — Every product ships a link preview card](0013-link-preview-card.md)
 
 ## Format
 

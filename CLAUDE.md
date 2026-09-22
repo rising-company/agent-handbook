@@ -16,6 +16,7 @@ This project follows the Rising Company shared architecture. Each decision below
 - [ADR-0010 — Data retention and disposal policy](adr/0010-data-retention-disposal.md)
 - [ADR-0011 — Accessibility assurance](adr/0011-accessibility-assurance.md)
 - [ADR-0012 — Better Auth as central identity (id.rising.company)](adr/0012-better-auth-central-identity.md) — supersedes ADR-0004
+- [ADR-0013 — Every product ships a link preview card](adr/0013-link-preview-card.md)
 
 See [`adr/README.md`](adr/README.md) for the full index. Deviating from an ADR is allowed but should add a new ADR that supersedes the old one.
 
