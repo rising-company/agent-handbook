@@ -7,7 +7,7 @@ This project follows the Rising Company shared architecture. Each decision below
 - [ADR-0001 — Next.js App Router + React 19 + TypeScript strict](adr/0001-nextjs-react-typescript-stack.md)
 - [ADR-0002 — Supabase as backend (auth, data, storage)](adr/0002-supabase-backend.md)
 - [ADR-0003 — Server Actions for mutations (no REST/API routes)](adr/0003-server-actions-for-mutations.md)
-- [ADR-0004 — Middleware-based auth gate](adr/0004-middleware-auth-gate.md)
+- [ADR-0004 — Middleware-based auth gate](adr/0004-middleware-auth-gate.md) — *superseded by ADR-0012*
 - [ADR-0005 — Rising Company Design System (Tailwind 4)](adr/0005-rising-design-system.md) — tokens at <https://design-system.rising.company/> ([llms.txt](https://design-system.rising.company/llms.txt))
 - [ADR-0006 — Vitest with `node` environment, tests/ folder](adr/0006-vitest-tests-layout.md)
 - [ADR-0007 — Migration immutability and local-first DB workflow](adr/0007-migration-immutability.md)
@@ -15,6 +15,8 @@ This project follows the Rising Company shared architecture. Each decision below
 - [ADR-0009 — Security assurance baseline](adr/0009-security-assurance-baseline.md)
 - [ADR-0010 — Data retention and disposal policy](adr/0010-data-retention-disposal.md)
 - [ADR-0011 — Accessibility assurance](adr/0011-accessibility-assurance.md)
+- [ADR-0012 — Better Auth as central identity (id.rising.company)](adr/0012-better-auth-central-identity.md) — supersedes ADR-0004
+- [ADR-0013 — Every product ships a link preview card](adr/0013-link-preview-card.md)
 
 See [`adr/README.md`](adr/README.md) for the full index. Deviating from an ADR is allowed but should add a new ADR that supersedes the old one.
 

@@ -22,7 +22,24 @@ The reference projects are [`os`](https://github.com/rising-company/os), [`huddl
 
 - [ ] **`src/app/icon.svg`** ships the Rising logo (1145-byte SVG used by `os`, `huddle`, `venue-map`). Copy it as-is unless the project has its own brand.
 - [ ] **`src/app/apple-icon.png`** present (180×180).
-- [ ] **`src/app/opengraph-image.{png,tsx}`** present so social shares look right.
+- [ ] **Link preview card shipped** — required of every Rising product, same standing as the
+  rising.company backlink ([ADR-0013](../adr/0013-link-preview-card.md); spec: "Link Preview
+  Card (required branding)" in <https://design-system.rising.company/llms.txt>, template:
+  `patterns/og-card.html`). The card makes the product's argument out of the product's own
+  data — a wordmark on a colored rectangle does not count. 1200 × 630 CSS px, Daylight always,
+  shot at 2× to a 2400 × 1260 PNG. Next.js: `src/app/opengraph-image.tsx` (`ImageResponse`,
+  `size = { width: 1200, height: 630 }`).
+- [ ] **Preview tags complete and absolute** — `canonical`, `description`, `og:type`,
+  `og:site_name`, `og:url`, `og:title`, `og:description`, `og:image`, `og:image:width`,
+  `og:image:height`, `og:image:alt`, `twitter:card=summary_large_image`, `twitter:title`,
+  `twitter:description`, `twitter:image`. `og:title` is the card's headline, not the page title.
+- [ ] **`og:image` carries a `?v=YYYY-MM-DD` stamp** on non-Next.js products, bumped in the same
+  commit that replaces the PNG. Scrapers cache `og:image` by URL; without a new stamp Slack,
+  Facebook and X keep serving the old card for days. (Next.js content-hashes the URL for you.)
+- [ ] **A test pins the card** where it is built from product data: the numbers printed on the
+  committed PNG against what the data now produces, and the stamp against the data's own
+  timestamp. Moving the data without regenerating the card should fail a test, not ship a stale
+  share. Reference implementation: `true-cost-to-phone/tests/og.test.mjs`.
 - [ ] **`src/app/manifest.ts`** (or `manifest.json`) defines name, short_name, theme color.
 - [ ] **`src/lib/config.ts`** is the single source for `appName`, `tagline`, `domain`, `supportEmail`, `companyName`, etc., read from env with sensible defaults ([ADR-0008](../adr/0008-branding-config.md)).
 - [ ] **No hardcoded brand strings** in components, metadata, or emails — everything imports from `@/lib/config`.
