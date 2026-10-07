@@ -17,6 +17,7 @@ This project follows the Rising Company shared architecture. Each decision below
 - [ADR-0011 — Accessibility assurance](adr/0011-accessibility-assurance.md)
 - [ADR-0012 — Better Auth as central identity (id.rising.company)](adr/0012-better-auth-central-identity.md) — supersedes ADR-0004
 - [ADR-0013 — Every product ships a link preview card](adr/0013-link-preview-card.md)
+- [ADR-0014 — Applicable products ship an MCP server](adr/0014-mcp-server.md) — so products are AI-native; reference: `os`
 
 See [`adr/README.md`](adr/README.md) for the full index. Deviating from an ADR is allowed but should add a new ADR that supersedes the old one.
 
