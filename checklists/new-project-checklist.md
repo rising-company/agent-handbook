@@ -92,6 +92,16 @@ The reference projects are [`os`](https://github.com/rising-company/os), [`huddl
 - [ ] **`CLAUDE.md`** copied from the handbook and tailored: TDD rules, UI-verification rules, and links to project-specific ADRs.
 - [ ] **`adr/`** copied from the handbook so structural decisions travel with the project. Add project-specific ADRs alongside.
 
+## Agent access (MCP)
+
+- [ ] **MCP server shipped, or "not applicable" recorded** in the project's `CLAUDE.md` ([ADR-0014](../adr/0014-mcp-server.md)). It is required wherever the product holds a person's or org's data or does recurring work for them. Reference: `os` (`convex/mcp/`, os ADR-0019).
+- [ ] **Tools are shaped like jobs, not tables.** A `get_context` tool to call first, `snake_case` names, and descriptions written for a model.
+- [ ] **Agent tokens**: minted in Settings → Agents from a session with a second factor, one org, explicit scopes, stored only as SHA-256, revocable, and dead once the minter leaves the org.
+- [ ] **A separate agent guard** that takes the org from the token and checks scope on every call. Hidden tools are still refused.
+- [ ] **One write path**: agent tools call the same domain helpers as the Server Actions. Agent-written rows carry `agent_token_id`, and delete tools refuse anything else.
+- [ ] **`POST /mcp`** uses stateless JSON Streamable HTTP and refuses requests with an `Origin` header.
+- [ ] **Tests** cover the protocol, the guard (unknown, revoked, lapsed-member and out-of-scope tokens) and each tool. **Verified with a real MCP client** (`claude mcp add --transport http …`) running a task end to end.
+
 ## Error & loading states
 
 - [ ] **`src/app/not-found.tsx`** styled with design-system tokens.
@@ -103,4 +113,5 @@ The reference projects are [`os`](https://github.com/rising-company/os), [`huddl
 - [ ] `npm run lint` clean.
 - [ ] `npm run test` green.
 - [ ] `npm run build` succeeds.
+- [ ] **MCP tools exercised with a real MCP client** if the change touches a tool, its inputs or its outputs.
 - [ ] **UI verified end-to-end** with the `agent-browser` skill — golden path *and* edge cases (see `CLAUDE.md`). If the change is backend-only, say so explicitly.
