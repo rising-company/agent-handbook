@@ -65,17 +65,29 @@ What to verify:
 - Watch for regressions in adjacent features, not just the one you touched.
 - Type checks and unit tests verify code correctness, not feature correctness — they are not a substitute for actually using the feature.
 - If `agent-browser` is unavailable or the change can't be exercised in a browser (e.g. backend-only), say so explicitly rather than claiming UI verification.
+- Keep the frames: the same pass produces the PR's visual story (below), so screenshot as you go rather than shooting it all again later.
 
 ## Pull requests
 
-### Show UI changes with the `share-screenshot` skill (Capture)
+### Before pushing a UI branch, run the `pre-push-ui-review` skill
 
 When a PR changes anything a user can see, post its **visual story** as one PR
 comment ([ADR-0015](adr/0015-pr-visual-evidence.md)): one sentence of context,
 **before**, **after**, a **GIF** of the interaction, and the states that matter.
-Use the [`share-screenshot`](skills/share-screenshot/SKILL.md) skill, which
-uploads to <https://capture.rising.company> and returns markdown. Its section
-"Showing a UI change in a PR" has the format and a worked command.
+
+The [`pre-push-ui-review`](skills/pre-push-ui-review/SKILL.md) skill is the
+procedure, end to end:
+
+1. Sign in locally through id.
+2. Drive the change with `agent-browser`.
+3. Keep frames in `<git-dir>/claude-ui-frames.md` as you go.
+4. Record the interaction.
+5. Compose the comment and gate it with `check-visual-story.sh`.
+6. Post it.
+
+It uploads through [`share-screenshot`](skills/share-screenshot/SKILL.md) to
+<https://capture.rising.company>. Run it once the implementation is done and
+before the push that opens or updates the PR.
 
 - **Reuse the `agent-browser` frames** from the UI verification above, instead
   of shooting the same views again.

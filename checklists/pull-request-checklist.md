@@ -15,12 +15,13 @@ project. Each item links to the ADR that explains the *why*.
 
 - [ ] **Decided whether a user can see the change.** If not, the PR description
   says so in one line, and the rest of this section doesn't apply.
-- [ ] **Driven end to end with `agent-browser`**, golden path and edge cases.
-- [ ] **Visual story posted as one PR comment** with the
-  [`share-screenshot`](../skills/share-screenshot/SKILL.md) skill: context
-  sentence → before (changes to an existing surface) → after → GIF of the
-  interaction → states that matter (empty / populated / error; 390px when
-  layout moved).
+- [ ] **[`pre-push-ui-review`](../skills/pre-push-ui-review/SKILL.md) run**:
+  driven end to end with `agent-browser` (golden path and edge cases), with
+  frames kept in the ledger as you went.
+- [ ] **Visual story posted as one PR comment**: context sentence → before
+  (changes to an existing surface) → after → GIF of the interaction → states
+  that matter (empty / populated / error; 390px when layout moved). It passed
+  `check-visual-story.sh`, with every owed GIF shot or explained.
 - [ ] **Every frame checked**: demo or seed data only, no secrets, tokens or
   real people's records. Anyone with the link can view it.
 - [ ] **Captions and alt text** say what to look at.

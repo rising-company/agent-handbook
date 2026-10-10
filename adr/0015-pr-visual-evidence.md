@@ -24,6 +24,16 @@ before/after "visual story" PR comment for every branch a user can see.
   an existing surface), **after**, a **GIF** of any interaction, then the
   states that matter (empty / populated / error, 390px width when layout moved).
   A PR that renders nothing differently says so in one line of its description.
+- **The procedure is the `pre-push-ui-review` skill**
+  ([`skills/pre-push-ui-review/`](../skills/pre-push-ui-review/SKILL.md)),
+  ported from PilotDesk's `e2e-agent-browser` and pre-push-review step 9:
+  - drive the change as a signed-in user;
+  - keep a frame ledger (`<git-dir>/claude-ui-frames.md`) that survives handoffs;
+  - record the interaction, or log an `owed: gif` line;
+  - check the composed comment with `check-visual-story.sh`, which refuses a
+    story missing an owed GIF or with no GIF and no `No GIF: <why>`.
+
+  PilotDesk's code-review dispatch and push gate are not adopted.
 - **Images go on Capture, through the `share-screenshot` skill**
   ([`skills/share-screenshot/`](../skills/share-screenshot/SKILL.md)). Use the
   `capture` CLI when you have a shell. MCP is for clients that don't, because
