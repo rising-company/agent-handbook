@@ -5,6 +5,9 @@ Source of truth for how AI coding agents (primarily Claude Code) work on Rising 
 ## What's inside
 
 - **[`CLAUDE.md`](CLAUDE.md)** — agent operating instructions: TDD discipline, UI verification rules, and links to every ADR. This file is what Claude Code loads on session start.
+- **[`skills/`](skills/)** — agent skills every Rising project relies on (ADR-0015):
+  - [`pre-push-ui-review`](skills/pre-push-ui-review/SKILL.md): verify a UI change in a browser and post its before/after story to the PR.
+  - [`share-screenshot`](skills/share-screenshot/SKILL.md): upload images to Capture and get markdown.
 - **[`adr/`](adr/)** — Architecture Decision Records covering the stack and conventions shared across `os`, `huddle`, `venue-map`, and any future Rising Company app. Start at [`adr/README.md`](adr/README.md).
 
 ## How to use it

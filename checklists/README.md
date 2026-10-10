@@ -5,6 +5,7 @@ Action-oriented checklists for recurring tasks. ADRs explain *what* we decided a
 ## Index
 
 - [new-project-checklist.md](new-project-checklist.md) — bootstrapping or auditing a new Rising Company app
+- [pull-request-checklist.md](pull-request-checklist.md) — before pushing a branch or opening a PR
 
 ## How to use
 

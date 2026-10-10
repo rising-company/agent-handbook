@@ -18,6 +18,7 @@ This project follows the Rising Company shared architecture. Each decision below
 - [ADR-0012 — Better Auth as central identity (id.rising.company)](adr/0012-better-auth-central-identity.md) — supersedes ADR-0004
 - [ADR-0013 — Every product ships a link preview card](adr/0013-link-preview-card.md)
 - [ADR-0014 — Applicable products ship an MCP server](adr/0014-mcp-server.md) — so products are AI-native; reference: `os`
+- [ADR-0015 — UI pull requests show their change, hosted on Capture](adr/0015-pr-visual-evidence.md) — before/after screenshots and a GIF as a PR comment
 
 See [`adr/README.md`](adr/README.md) for the full index. Deviating from an ADR is allowed but should add a new ADR that supersedes the old one.
 
@@ -26,6 +27,7 @@ See [`adr/README.md`](adr/README.md) for the full index. Deviating from an ADR i
 Run through the relevant checklist before declaring a task complete. ADRs explain decisions; checklists tell you what to verify.
 
 - [New project checklist](checklists/new-project-checklist.md) — bootstrapping or auditing a Rising Company app
+- [Pull request checklist](checklists/pull-request-checklist.md) — before pushing a branch or opening a PR
 
 See [`checklists/README.md`](checklists/README.md) for the full index.
 
@@ -63,3 +65,41 @@ What to verify:
 - Watch for regressions in adjacent features, not just the one you touched.
 - Type checks and unit tests verify code correctness, not feature correctness — they are not a substitute for actually using the feature.
 - If `agent-browser` is unavailable or the change can't be exercised in a browser (e.g. backend-only), say so explicitly rather than claiming UI verification.
+- Keep the frames: the same pass produces the PR's visual story (below), so screenshot as you go rather than shooting it all again later.
+
+## Pull requests
+
+### Before pushing a UI branch, run the `pre-push-ui-review` skill
+
+When a PR changes anything a user can see, post its **visual story** as one PR
+comment ([ADR-0015](adr/0015-pr-visual-evidence.md)): one sentence of context,
+**before**, **after**, a **GIF** of the interaction, and the states that matter.
+
+The [`pre-push-ui-review`](skills/pre-push-ui-review/SKILL.md) skill is the
+procedure, end to end:
+
+1. Sign in locally through id.
+2. Drive the change with `agent-browser`.
+3. Keep frames in `<git-dir>/claude-ui-frames.md` as you go.
+4. Record the interaction.
+5. Compose the comment and gate it with `check-visual-story.sh`.
+6. Post it.
+
+It uploads through [`share-screenshot`](skills/share-screenshot/SKILL.md) to
+<https://capture.rising.company>. Run it once the implementation is done and
+before the push that opens or updates the PR.
+
+- **Reuse the `agent-browser` frames** from the UI verification above, instead
+  of shooting the same views again.
+- **Check every frame before uploading.** Anyone with the link can view the
+  image, so use seed or demo data and keep secrets, tokens and real people's
+  records out.
+- **If the CLI isn't ready, say so in your report.** That means `capture whoami`
+  shows not signed in, or the account is pending approval. Hand the person the
+  `capture login` URL and code, or tell them the account is waiting for a
+  Capture admin. Don't silently skip the story.
+- **A PR that changes nothing visible** says so in one line of its description.
+
+Setup, once per machine:
+`npm i -g https://capture.rising.company/capture-cli.tgz && capture login && capture skill install --global`.
+
