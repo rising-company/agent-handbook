@@ -19,6 +19,7 @@ This project follows the Rising Company shared architecture. Each decision below
 - [ADR-0013 — Every product ships a link preview card](adr/0013-link-preview-card.md)
 - [ADR-0014 — Applicable products ship an MCP server](adr/0014-mcp-server.md) — so products are AI-native; reference: `os`
 - [ADR-0015 — UI pull requests show their change, hosted on Capture](adr/0015-pr-visual-evidence.md) — before/after screenshots and a GIF as a PR comment
+- [ADR-0016 — Shared React components in `@rising/ui`, built on Base UI](adr/0016-react-components-base-ui.md) — native elements first; anything with focus or keyboard behaviour starts from Base UI
 
 See [`adr/README.md`](adr/README.md) for the full index. Deviating from an ADR is allowed but should add a new ADR that supersedes the old one.
 

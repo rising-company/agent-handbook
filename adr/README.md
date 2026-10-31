@@ -19,6 +19,7 @@ Each ADR captures one decision that is shared across Rising Company projects (`o
 - [ADR-0013 — Every product ships a link preview card](0013-link-preview-card.md)
 - [ADR-0014 — Applicable products ship an MCP server](0014-mcp-server.md)
 - [ADR-0015 — UI pull requests show their change, hosted on Capture](0015-pr-visual-evidence.md)
+- [ADR-0016 — Shared React components in `@rising/ui`, built on Base UI](0016-react-components-base-ui.md)
 
 ## Format
 

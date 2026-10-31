@@ -24,3 +24,4 @@ We want a consistent visual language across `os`, `huddle`, `venue-map`, and fut
 - New projects copy the tailwind config from this template; updates flow from the design-system site into `tailwind.config.ts` per project.
 - One-off color or spacing values in components are a smell — reach for a token first.
 - The design system is a public site, not an npm package — there is no version pin. When tokens drift, pull from `llms.txt` and reconcile.
+  *Amended by [ADR-0016](0016-react-components-base-ui.md):* React products also install `@rising/ui`, a versioned package of the components that carry behaviour. Tokens and CSS still come from `llms.txt` / `rising.css`.
