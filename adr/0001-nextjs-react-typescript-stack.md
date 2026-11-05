@@ -1,6 +1,6 @@
 # ADR-0001 — Next.js App Router + React 19 + TypeScript strict
 
-**Status:** Accepted
+**Status:** Accepted. Version pins updated 2026-11-05.
 
 ## Context
 
@@ -8,11 +8,11 @@ All Rising Company web apps are server-rendered, auth-gated, and share a small t
 
 ## Decision
 
-- **Next.js 16.2.4** with the **App Router** (`src/app/`).
+- **Next.js 16.4.3** with the **App Router** (`src/app/`).
 - **React 19.2.4** + **react-dom 19.2.4**.
 - **TypeScript 5** with `"strict": true`.
 - Path alias **`@/*` → `./src/*`** in `tsconfig.json`.
-- **ESLint 9** with `eslint-config-next@16.2.4` (`core-web-vitals` + `typescript` rule sets).
+- **ESLint 9** with `eslint-config-next@16.3.6` (`core-web-vitals` + `typescript` rule sets).
 - Standard layout under `src/`:
   - `app/` — routes, layouts, route handlers
   - `components/` — shared UI

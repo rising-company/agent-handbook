@@ -71,9 +71,13 @@ plumbing. Local development needed a Docker stack.
 - **ADR-0003 is unaffected.** Where an app keeps Server Actions, they call
   Convex. Action tests use a Convex client fake instead of a test Supabase
   client.
-- **ADR-0006:** Convex functions run in Convex's V8 runtime. Test them with
-  `convex-test` under the `edge-runtime` Vitest environment, not `node`.
-  Reference: `os` ADR-0015.
+- **ADR-0006 is amended.** Convex functions run in Convex's V8 runtime, so
+  `vitest.config.ts` defines two projects. A `convex` project runs
+  `convex/**/*.test.ts` with `convex-test` on the `edge-runtime` environment.
+  A `node` project runs `tests/` as before. Convex tests sit next to the
+  functions they cover, where `convex-test` looks for modules by default.
+  Reference: `huddle/vitest.config.ts`. `os` keeps them in
+  `tests/convex/functions/` under its own ADR-0015.
 - **Functions the Next.js layer calls must be public** (`query`/`mutation`).
   Internal functions are unreachable from outside Convex, and a string reference
   to one compiles fine but fails at runtime (`safe` ADR-0017). A public function

@@ -1,6 +1,6 @@
 # ADR-0005 — Rising Company Design System (Tailwind 4)
 
-**Status:** Accepted
+**Status:** Superseded by [ADR-0018](0018-design-tokens-in-css.md)
 
 ## Context
 

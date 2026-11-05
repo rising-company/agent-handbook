@@ -2,20 +2,22 @@
 
 Use when bootstrapping a new Rising Company app, or auditing an existing one against the shared baseline. Each item links to the ADR that explains the *why*.
 
-The reference projects are [`os`](https://github.com/rising-company/os), [`huddle`](https://github.com/rising-company/huddle), and [`venue-map`](https://github.com/rising-company/venue-map). When in doubt, copy from the most recent one.
+The reference projects are [`os`](https://github.com/rising-company/os), [`huddle`](https://github.com/rising-company/huddle), [`safe`](https://github.com/rising-company/safe), and [`venue-map`](https://github.com/rising-company/venue-map). When in doubt, copy from the most recent one.
 
 ## Stack & tooling
 
-- [ ] **Next.js + React + TypeScript stack** matches [ADR-0001](../adr/0001-nextjs-react-typescript-stack.md). Pin to the same versions the other projects use (`next@16.2.4`, `react@19.2.4`, `typescript@^5`); don't drift.
+- [ ] **Next.js + React + TypeScript stack** matches [ADR-0001](../adr/0001-nextjs-react-typescript-stack.md). Pin to the same versions the other projects use (`next@16.4.3`, `react@19.2.4`, `typescript@^5`); don't drift.
 - [ ] **`tsconfig.json`** has `strict: true`, `target: "ES2022"`, `allowJs: false`, `moduleResolution: "bundler"`, and the `@/*` → `./src/*` path alias.
 - [ ] **`eslint.config.mjs`** uses flat-config (`eslint@^9`) with `eslint-config-next/core-web-vitals` + `eslint-config-next/typescript`.
-- [ ] **`vitest.config.ts`** sets `globals: true`, `environment: "node"`, and the same `@/*` alias as `tsconfig.json` ([ADR-0006](../adr/0006-vitest-tests-layout.md)).
+- [ ] **`vitest.config.ts`** sets `globals: true` and the same `@/*` alias as `tsconfig.json`, with two projects: `node` for `tests/**`, and `convex` on `edge-runtime` for `convex/**/*.test.ts` ([ADR-0006](../adr/0006-vitest-tests-layout.md), [ADR-0017](../adr/0017-convex-backend.md)).
 
 ## Design system
 
-- [ ] **Tokens come from the design system** ([ADR-0005](../adr/0005-rising-design-system.md)). Fetch <https://design-system.rising.company/llms.txt> before touching colors, spacing, fonts, or radii. Don't invent tokens.
-- [ ] **`tailwind.config.ts`** mirrors the canonical tokens (mint / accent-blue / danger / warning, page/section/element/grid/inline/tight spacing, Rajdhani + Share Tech Mono fonts).
-- [ ] **`src/app/globals.css`** declares the `@theme` block and loads Google Fonts for Rajdhani + Share Tech Mono.
+- [ ] **Tokens come from the design system** ([ADR-0018](../adr/0018-design-tokens-in-css.md)). Fetch <https://design-system.rising.company/llms.txt> before touching colors, spacing, fonts, radii, or motion. Don't invent tokens.
+- [ ] **`rising.css` vendored** (the whole file or the rules used), with any local changes noted at the top. **No `tailwind.config.ts`.**
+- [ ] **`src/app/globals.css`** maps the tokens with `@theme` and loads the three faces: Rajdhani, IBM Plex Sans, Share Tech Mono.
+- [ ] **Default theme picked by audience** (Mission or Daylight, per `llms.txt`) and set as `data-theme` on the server-rendered `<html>`.
+- [ ] **Motion built on Motion (motion.dev)**, with reduced motion honoured. React products install `@rising/ui` ([ADR-0016](../adr/0016-react-components-base-ui.md)).
 - [ ] **No one-off colors, spacings, or fonts** in components. If you need one, propose it upstream in the design-system repo instead.
 
 ## Branding & metadata
@@ -76,7 +78,7 @@ The reference projects are [`os`](https://github.com/rising-company/os), [`huddl
 
 ## Testing
 
-- [ ] **`tests/` folder** mirrors `src/` layout ([ADR-0006](../adr/0006-vitest-tests-layout.md)). Files named `*.test.ts` (not `.spec.ts`).
+- [ ] **`tests/` folder** mirrors `src/` layout ([ADR-0006](../adr/0006-vitest-tests-layout.md)); Convex function tests sit beside their functions in `convex/` ([ADR-0017](../adr/0017-convex-backend.md)). Files named `*.test.ts` (not `.spec.ts`).
 - [ ] **At least one passing test** exists from day one so CI is green and the harness is wired correctly.
 - [ ] **Red-green-refactor discipline** is documented in `CLAUDE.md` and followed in PRs.
 

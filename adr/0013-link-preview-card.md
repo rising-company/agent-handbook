@@ -18,7 +18,7 @@ Until now nothing said what that card had to be. The outcomes were the two bad o
 
 ## Decision
 
-- **Every Rising Company product ships a link preview card.** It is a per-product obligation with the same standing as the rising.company backlink (ADR-0005), not an optional polish item.
+- **Every Rising Company product ships a link preview card.** It is a per-product obligation with the same standing as the rising.company backlink (ADR-0018, specified in `llms.txt`), not an optional polish item.
 - **The card makes the product's argument out of the product's own data** — the chart, the grid, the ranking the page itself computes. A logo on a rectangle does not satisfy this. If the product has a number, the number is on the card.
 - **The spec is the design system's**, as with every other shared visual decision: "Link Preview Card (required branding)" in <https://design-system.rising.company/llms.txt>. Worked template: `patterns/og-card.html`. In summary — 1200 × 630 CSS px, **Daylight always** (a stranger sees it first), six parts (edge rule → eyebrow → headline → lede → **evidence band** → footer stamp), shot at 2× to a 2400 × 1260 PNG after `document.fonts.ready`.
 - **The card is a generated artifact, not a drawing.** The renderer is committed next to it (`tools/og.html`) so the card can be rebuilt from the data rather than redrawn. Next.js products use `src/app/opengraph-image.tsx` with `ImageResponse` at 1200 × 630.

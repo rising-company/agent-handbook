@@ -1,6 +1,6 @@
 # ADR-0006 — Vitest with `node` environment, tests/ folder
 
-**Status:** Accepted
+**Status:** Accepted. Amended by [ADR-0017](0017-convex-backend.md): Convex function tests run in a second `edge-runtime` project and live in `convex/`.
 
 ## Context
 
