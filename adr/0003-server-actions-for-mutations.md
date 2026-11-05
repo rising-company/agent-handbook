@@ -17,5 +17,5 @@ Form submissions, button-triggered writes, and other state changes need to run s
 
 - No client-side `fetch('/api/...')` for our own mutations — call the action directly.
 - Cache revalidation uses `revalidatePath` / `revalidateTag` inside actions.
-- Tests for actions live in `tests/actions/` (see ADR-0006) and exercise the action function directly with a test Supabase client.
+- Tests for actions live in `tests/actions/` (see ADR-0006) and exercise the action function directly with a Convex client fake (see ADR-0017).
 - If we ever expose an external API, it goes under `app/api/v1/...` and is documented separately — server actions are not part of any public contract.

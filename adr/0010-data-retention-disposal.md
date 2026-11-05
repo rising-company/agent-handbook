@@ -1,6 +1,6 @@
 # ADR-0010 — Data retention and disposal policy
 
-**Status:** Accepted
+**Status:** Accepted. Amended by [ADR-0017](0017-convex-backend.md): data now lives in Convex, not Supabase.
 
 ## Context
 

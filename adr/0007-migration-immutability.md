@@ -1,6 +1,6 @@
 # ADR-0007 — Migration immutability and local-first DB workflow
 
-**Status:** Accepted
+**Status:** Superseded by [ADR-0017](0017-convex-backend.md)
 
 ## Context
 
