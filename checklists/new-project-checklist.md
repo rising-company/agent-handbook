@@ -47,24 +47,25 @@ The reference projects are [`os`](https://github.com/rising-company/os), [`huddl
 
 ## Auth & middleware
 
-- [ ] **`middleware.ts`** at the repo root gates non-public routes and bounces authenticated users away from `/` ([ADR-0004](../adr/0004-middleware-auth-gate.md)).
-- [ ] **`src/lib/supabase/middleware.ts`** exports a reusable `updateSession()` helper — middleware.ts stays thin (this is the `venue-map` pattern; copy it).
+- [ ] **Sign-in is delegated to `id.rising.company`** ([ADR-0012](../adr/0012-better-auth-central-identity.md)). The app ships no sign-in form, password field or auth email templates of its own. The session arrives as the shared `.rising.company` cookie.
+- [ ] **`middleware.ts`** (or `proxy.ts`) at the repo root gates non-public routes against a default-deny allowlist and bounces authenticated users away from `/`. The allowlist and matcher rules from [ADR-0004](../adr/0004-middleware-auth-gate.md) survive; the Supabase session refresh does not.
 - [ ] **`matcher` config** excludes `_next/static`, `_next/image`, favicon, public assets.
-- [ ] **Passwordless sign-in is the default.** Use Supabase magic-link / OTP; no password field on the sign-in form unless there's a specific reason to opt out. Removes the password-reset flow and the leaked-password risk class.
-- [ ] **Supabase auth email templates customized to Rising brand.** Drop branded HTML in `supabase/templates/` and wire each from `supabase/config.toml` via `[auth.email.template.<name>]` blocks setting `subject` + `content_path`. Cover `confirmation`, `magic_link`, `recovery`, `invite`, and `email_change`. HUD aesthetic, mint accents, monospace headers, Rising logo, brand-correct footer — not the Supabase defaults. **Run `supabase config push` after editing** — `config.toml` only drives the *local* stack; the hosted project keeps serving Supabase defaults until you push (CLI ≥ 2.x; the diff lists each template that will change).
 
-## Supabase
+## Convex
 
-- [ ] **`supabase/` folder** with `config.toml`, `migrations/`, and `seed.sql` for demo data ([ADR-0002](../adr/0002-supabase-backend.md)).
-- [ ] **Migrations follow `NNN_description.sql`** zero-padded numbering, append-only ([ADR-0007](../adr/0007-migration-immutability.md)). Never edit a merged migration — write a new one.
-- [ ] **RLS enabled** on every user-data table. Owner CRUD + public read where appropriate; service-role for system writes.
-- [ ] **`src/lib/supabase/`** has at minimum `server.ts`, `client.ts`, and `middleware.ts`. Add `queries.ts` / `storage.ts` as needed.
-- [ ] **`src/app/api/` is empty or absent** — mutations are Server Actions, not REST routes ([ADR-0003](../adr/0003-server-actions-for-mutations.md)).
+- [ ] **`convex/` folder** with `schema.ts`, the functions, and `lib/` for guards and shared helpers ([ADR-0017](../adr/0017-convex-backend.md)). No `supabase/` folder.
+- [ ] **`convex/auth.config.ts`** declares `id.rising.company` as a `customJwt` provider. No `@convex-dev/auth`.
+- [ ] **Every data function calls a guard first.** The guard takes the identity from `ctx.auth`, never from an argument. Reference: `os` `convex/lib/guards.ts`.
+- [ ] **Refusal-path tests** for each data function, run with `convex-test` on the `edge-runtime` Vitest environment. These replace the Supabase security-advisor merge gate.
+- [ ] **Preview deployments per branch**: the Vercel build runs `convex deploy --preview-name <branch>`. Set `ID_ISSUER` and `ID_JWKS` in the Convex dashboard's preview defaults first. Without them a preview deploys cleanly and then refuses every token. Reference: `huddle/scripts/vercel-build.sh`.
+- [ ] **Demo seed data is dev-only.** It never runs against preview or production.
+- [ ] **CSP `connect-src`** allows `*.convex.cloud` and `*.convex.site`.
+- [ ] **`src/app/api/` is empty or absent**: mutations are Server Actions or Convex mutations, not REST routes ([ADR-0003](../adr/0003-server-actions-for-mutations.md)). The MCP endpoint ([ADR-0014](../adr/0014-mcp-server.md)) is the sanctioned exception.
 
 ## Build & deploy config
 
 - [ ] **`next.config.ts`** captures `BUILD_DATE` and `BUILD_SHA` at build time (Vercel env vars with `git rev-parse HEAD` fallback) and exposes them via `env`. Copy the pattern from `os/next.config.ts`.
-- [ ] **`remotePatterns`** in `next.config.ts` allows `**.supabase.co` for storage-served images.
+- [ ] **`remotePatterns`** in `next.config.ts` allows `**.convex.cloud` if images are served from Convex storage.
 - [ ] **`src/lib/version.ts`** (or similar) reads `BUILD_DATE` / `BUILD_SHA` so the running version is observable at runtime.
 
 ## Environment
@@ -81,14 +82,14 @@ The reference projects are [`os`](https://github.com/rising-company/os), [`huddl
 
 ## Scripts (`package.json`)
 
-- [ ] `dev` starts Next.js (and Supabase locally if applicable).
+- [ ] `dev` starts Next.js and `convex dev`.
 - [ ] `build`, `start`, `lint`, `test` all present and passing.
-- [ ] For Supabase projects: `db:start`, `db:stop`, `db:reset`, `db:studio`, plus a migration helper. Document them in the README.
+- [ ] A seed script for the dev deployment's demo data. Document it in the README.
 
 ## Repo hygiene
 
-- [ ] **`.gitignore`** ignores `.next/`, `node_modules`, `.env*` (except `.env.example`), `coverage/`, `*.tsbuildinfo`, `supabase/.temp/`, `.vercel/`.
-- [ ] **`README.md`** covers: what the app does, how to run it locally, env vars (point to `.env.example`), how to run tests, how to run migrations.
+- [ ] **`.gitignore`** ignores `.next/`, `node_modules`, `.env*` (except `.env.example`), `coverage/`, `*.tsbuildinfo`, `.vercel/`.
+- [ ] **`README.md`** covers: what the app does, how to run it locally, env vars (point to `.env.example`), how to run tests, how to seed the dev deployment.
 - [ ] **`CLAUDE.md`** copied from the handbook and tailored: TDD rules, UI-verification rules, and links to project-specific ADRs.
 - [ ] **`adr/`** copied from the handbook so structural decisions travel with the project. Add project-specific ADRs alongside.
 

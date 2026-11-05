@@ -16,7 +16,7 @@ All Rising Company web apps are server-rendered, auth-gated, and share a small t
 - Standard layout under `src/`:
   - `app/` — routes, layouts, route handlers
   - `components/` — shared UI
-  - `lib/` — framework-agnostic helpers, Supabase clients
+  - `lib/` — framework-agnostic helpers, Convex clients (see ADR-0017)
   - `actions/` — server actions (see ADR-0003)
 
 ## Consequences

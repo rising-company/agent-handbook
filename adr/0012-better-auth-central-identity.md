@@ -103,7 +103,5 @@ work, and it pins `better-auth <1.7` while the current line is 1.7.x.
 
 ## Still open
 
-Handbook ADR-0002 (Supabase as backend) has been dead in practice since all four
-apps moved to Convex — recorded in `os` ADR-0012, `safe` ADR-0017 and
-`venue-map` ADR-0001, but never upstreamed. It needs its own ADR; this one does
-not cover it.
+Nothing. Handbook ADR-0002 (Supabase as backend), which this section used to
+flag as stale, is superseded by [ADR-0017](0017-convex-backend.md).

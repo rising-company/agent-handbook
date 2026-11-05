@@ -1,6 +1,6 @@
 # ADR-0009 — Security assurance baseline
 
-**Status:** Accepted
+**Status:** Accepted. Amended by [ADR-0017](0017-convex-backend.md): controls 1, 2, 4 and 8 are restated for Convex there.
 
 ## Context
 
