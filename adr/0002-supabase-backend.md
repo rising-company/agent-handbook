@@ -1,6 +1,6 @@
 # ADR-0002 — Supabase as backend (auth, data, storage)
 
-**Status:** Accepted
+**Status:** Superseded by [ADR-0017](0017-convex-backend.md)
 
 ## Context
 

@@ -5,12 +5,12 @@
 This project follows the Rising Company shared architecture. Each decision below is captured as an ADR — read them before making structural changes.
 
 - [ADR-0001 — Next.js App Router + React 19 + TypeScript strict](adr/0001-nextjs-react-typescript-stack.md)
-- [ADR-0002 — Supabase as backend (auth, data, storage)](adr/0002-supabase-backend.md)
+- [ADR-0002 — Supabase as backend (auth, data, storage)](adr/0002-supabase-backend.md) — *superseded by ADR-0017*
 - [ADR-0003 — Server Actions for mutations (no REST/API routes)](adr/0003-server-actions-for-mutations.md)
 - [ADR-0004 — Middleware-based auth gate](adr/0004-middleware-auth-gate.md) — *superseded by ADR-0012*
-- [ADR-0005 — Rising Company Design System (Tailwind 4)](adr/0005-rising-design-system.md) — tokens at <https://design-system.rising.company/> ([llms.txt](https://design-system.rising.company/llms.txt))
-- [ADR-0006 — Vitest with `node` environment, tests/ folder](adr/0006-vitest-tests-layout.md)
-- [ADR-0007 — Migration immutability and local-first DB workflow](adr/0007-migration-immutability.md)
+- [ADR-0005 — Rising Company Design System (Tailwind 4)](adr/0005-rising-design-system.md) — tokens at <https://design-system.rising.company/> ([llms.txt](https://design-system.rising.company/llms.txt)) — *superseded by ADR-0018*
+- [ADR-0006 — Vitest with `node` environment, tests/ folder](adr/0006-vitest-tests-layout.md) — *amended by ADR-0017*
+- [ADR-0007 — Migration immutability and local-first DB workflow](adr/0007-migration-immutability.md) — *superseded by ADR-0017*
 - [ADR-0008 — Branding via `src/lib/config.ts`](adr/0008-branding-config.md)
 - [ADR-0009 — Security assurance baseline](adr/0009-security-assurance-baseline.md)
 - [ADR-0010 — Data retention and disposal policy](adr/0010-data-retention-disposal.md)
@@ -20,6 +20,8 @@ This project follows the Rising Company shared architecture. Each decision below
 - [ADR-0014 — Applicable products ship an MCP server](adr/0014-mcp-server.md) — so products are AI-native; reference: `os`
 - [ADR-0015 — UI pull requests show their change, hosted on Capture](adr/0015-pr-visual-evidence.md) — before/after screenshots and a GIF as a PR comment
 - [ADR-0016 — Shared React components in `@rising/ui`, built on Base UI](adr/0016-react-components-base-ui.md) — native elements first; anything with focus or keyboard behaviour starts from Base UI
+- [ADR-0017 — Convex as backend (data, functions, storage)](adr/0017-convex-backend.md) — supersedes ADR-0002 and ADR-0007; identity stays with ADR-0012
+- [ADR-0018 — Design system: tokens in CSS, two themes, three faces](adr/0018-design-tokens-in-css.md) — supersedes ADR-0005; token values come only from [llms.txt](https://design-system.rising.company/llms.txt)
 
 See [`adr/README.md`](adr/README.md) for the full index. Deviating from an ADR is allowed but should add a new ADR that supersedes the old one.
 
